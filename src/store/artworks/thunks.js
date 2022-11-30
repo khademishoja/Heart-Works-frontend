@@ -26,3 +26,14 @@ export const fetchDetailsArtWorks =
       console.log(e.message);
     }
   };
+export const updateHeart = (artWork) => async (dispatch, getstate) => {
+  try {
+    debugger;
+    const response = await axios.put(
+      `http://localhost:4000/artworks/${artWork.id}`,
+      { hearts: artWork.hearts }
+    );
+  } catch (e) {
+    console.log(e.message);
+  }
+};
