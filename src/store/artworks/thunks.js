@@ -37,3 +37,16 @@ export const updateHeart = (artWork) => async (dispatch, getstate) => {
     console.log(e.message);
   }
 };
+
+export const postBid = (bid) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().user;
+    const res = await axios.post("http://localhost:4000/bids", bid, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};

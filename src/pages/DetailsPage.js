@@ -1,14 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { selectDetailsArtWorks } from "../store/artworks/selector";
-import { fetchDetailsArtWorks, updateHeart } from "../store/artworks/thunks";
+import {
+  fetchDetailsArtWorks,
+  updateHeart,
+  postBid,
+} from "../store/artworks/thunks";
 import { useParams } from "react-router-dom";
+import { selectUser, selectToken } from "../store/user/selectors";
 const DetailsPage = () => {
   const dispatch = useDispatch();
   const [hearts, setHearts] = useState(0);
   const id = useParams();
   const artWork = useSelector(selectDetailsArtWorks);
-
+  const [amount, setAmount] = useState(0);
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+  const onAmonuntChange = (e) => {
+    setAmount(e.target.value);
+  };
   useEffect(() => {
     dispatch(fetchDetailsArtWorks(id));
   }, [dispatch, id]);
@@ -23,6 +33,13 @@ const DetailsPage = () => {
     }
 
     //dispatch(updateHeart(artWork));
+  };
+  const onBidPost = () => {
+    if (amount) {
+      dispatch(
+        postBid({ email: user.email, amount: amount, artworkId: artWork.id })
+      );
+    }
   };
   return artWork && artWork.bids ? (
     <div>
@@ -42,6 +59,15 @@ const DetailsPage = () => {
           })}
         </ul>
         <button onClick={onheartClick}>Give heart</button>
+        {token ? (
+          <div>
+            Amount :
+            <input type="number" value={amount} onChange={onAmonuntChange} />
+            <button onClick={onBidPost}>Bid</button>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   ) : (
