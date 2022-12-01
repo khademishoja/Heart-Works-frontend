@@ -24,7 +24,7 @@ export const Navigation = () => {
       </Hamburger>
       <Menu open={open}>
         {/* <MenuLink>Start an auction</MenuLink> */}
-        {token && user.isArtist ? (
+        {token && user && user.isArtist ? (
           <MenuLink to="/startauction">Start an auction </MenuLink>
         ) : (
           <div></div>
