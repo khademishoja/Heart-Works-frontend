@@ -67,5 +67,22 @@ export const postArtWork = (artwork) => async (dispatch, getstate) => {
     if (res.status === 200) {
       dispatch(setSuccessMessage("Art posted successfully."));
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const deleteArtWork = (id) => async (dispatch, getstate) => {
+  try {
+    const { token } = getstate().user;
+    const res = await axios.delete(`http://localhost:4000/artworks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log(res);
+    dispatch(fetchArtWorks());
+  } catch (e) {
+    console.log(e);
+  }
 };

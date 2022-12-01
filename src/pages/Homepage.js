@@ -26,6 +26,7 @@ export const Homepage = () => {
               imageUrl={artWork.imageUrl}
               hearts={artWork.hearts}
               minimumBid={artWork.minimumBid}
+              userId={artWork.userId}
             />
           </div>
         );
