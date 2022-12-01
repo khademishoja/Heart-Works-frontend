@@ -50,3 +50,13 @@ export const postBid = (bid) => async (dispatch, getState) => {
     console.log(e);
   }
 };
+export const postArtWork = (artwork) => async (dispatch, getstate) => {
+  try {
+    const { token } = getstate().user;
+    const res = await axios.post("http://localhost:4000/artworks", artwork, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (e) {}
+};
