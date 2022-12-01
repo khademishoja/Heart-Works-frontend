@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { postArtWork } from "../store/artworks/thunks";
 import { useParams } from "react-router-dom";
 import { selectUser, selectToken } from "../store/user/selectors";
+import { selectSuccessMessge } from "../store/artworks/selector";
 const StartAuction = () => {
   const [title, setTitle] = useState("");
   const [minimumBid, setMinimumBid] = useState(0);
   const [imageUrl, setImageUrl] = useState("");
   const user = useSelector(selectUser);
+  const successMessage = useSelector(selectSuccessMessge);
   const dispatch = useDispatch();
   const onNumberChange = (e) => {
     setMinimumBid(e.target.value);
@@ -19,7 +21,8 @@ const StartAuction = () => {
   const onImageUrlChange = (e) => {
     setImageUrl(e.target.value);
   };
-  const onPostArtWork = () => {
+  const onPostArtWork = (e) => {
+    e.preventDefault();
     dispatch(
       postArtWork({
         title: title,
@@ -62,6 +65,7 @@ const StartAuction = () => {
       <div>
         <button type="submit">Star auction</button>
       </div>
+      {successMessage ? <h3>{successMessage}</h3> : <div></div>}
     </form>
   );
 };

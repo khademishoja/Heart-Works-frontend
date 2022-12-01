@@ -1,4 +1,9 @@
-import { startLoading, setAllArtWorks, setArtWorkeDetails } from "./slice";
+import {
+  startLoading,
+  setAllArtWorks,
+  setArtWorkeDetails,
+  setSuccessMessage,
+} from "./slice";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -28,7 +33,6 @@ export const fetchDetailsArtWorks =
   };
 export const updateHeart = (artWork) => async (dispatch, getstate) => {
   try {
-    debugger;
     const response = await axios.put(
       `http://localhost:4000/artworks/${artWork.id}`,
       { hearts: artWork.hearts }
@@ -46,6 +50,7 @@ export const postBid = (bid) => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(res);
   } catch (e) {
     console.log(e);
   }
@@ -58,5 +63,9 @@ export const postArtWork = (artwork) => async (dispatch, getstate) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(res);
+    if (res.status === 200) {
+      dispatch(setSuccessMessage("Art posted successfully."));
+    }
   } catch (e) {}
 };
