@@ -20,3 +20,24 @@ input {
   width: 350px;
   height: 350px;
 }
+table {
+  width: 20%;
+  margin: 20px auto;
+  table-layout: auto;
+}
+th,
+td {
+  padding: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+.tblHeader {
+  background-color: gray;
+}
+.tblinfo {
+  font-style: italic;
+}
+/* .headerinfo {
+  background-color: gray;
+  height: 55px;
+} */

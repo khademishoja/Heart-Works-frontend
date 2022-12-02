@@ -38,7 +38,7 @@ const StartAuction = () => {
       <form onSubmit={onPostArtWork}>
         <h1>Start an auction</h1>
         <div>
-          title{" "}
+          title
           <input
             type="text"
             placeholder="name of your artwork"

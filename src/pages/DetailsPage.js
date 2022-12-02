@@ -77,23 +77,33 @@ const DetailsPage = () => {
         <button onClick={onheartClick} className="btn">
           Give heart
         </button>
-        <h3> Bids:</h3>
+        <h3> 🤑️ Bids 🤑️</h3>
 
-        <ul>
+        <table>
+          <thead>
+            <tr className="tblHeader">
+              <th>Email</th>
+              <th>Bid $</th>
+            </tr>
+          </thead>
           {bids.map((item, index) => {
             return (
-              <li key={index}>
-                Email:{item.email} <br />
-                Amount:{item.amount}
-              </li>
+              <tbody key={index}>
+                <tr className="tblinfo">
+                  <td> Email:{item.email}</td>
+                  <td> Amount:{item.amount}</td>
+                </tr>
+              </tbody>
             );
           })}
-        </ul>
+        </table>
         {token ? (
           <div>
             Amount :
             <input type="number" value={amount} onChange={onAmonuntChange} />
-            <button onClick={onBidPost}>Bid</button>
+            <button onClick={onBidPost} className="btn">
+              Bid
+            </button>
           </div>
         ) : (
           <div></div>
