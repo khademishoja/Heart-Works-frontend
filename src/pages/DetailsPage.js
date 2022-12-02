@@ -73,7 +73,7 @@ const DetailsPage = () => {
       <div>
         <h2>{artWork.title}</h2>
         <img src={artWork.imageUrl} alt="art work pic" className="artWorkPic" />
-        <p>Hearts:{hearts}</p>
+        <p>❤️:{hearts}</p>
         <button onClick={onheartClick} className="btn">
           Give heart
         </button>

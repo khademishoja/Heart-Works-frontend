@@ -22,7 +22,7 @@ const ArtCard = ({ id, title, imageUrl, hearts, numberOfBids, userId }) => {
         </NavLink>
       </button>
       {user && user.isArtist && user.id === userId ? (
-        <button onClick={onDelete} className="btndelete">
+        <button onClick={onDelete} className="btn">
           Delete
         </button>
       ) : (
