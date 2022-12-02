@@ -4,9 +4,10 @@ import { LinkWord } from "../styled";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchArtWorks } from "../store/artworks/thunks";
+import { fetchArtWorks, deleteArtWork } from "../store/artworks/thunks";
 import { selectArtWorks } from "../store/artworks/selector";
 import ArtCard from "../components/ArtCard";
+import "./style.css";
 export const Homepage = () => {
   const artWorks = useSelector(selectArtWorks);
   const dispatch = useDispatch();
@@ -16,25 +17,32 @@ export const Homepage = () => {
   if (!artWorks) return <div>Loading...</div>;
   console.log(artWorks);
   return (
-    <Container>
+    <div className="Container">
       {artWorks.map((artWork, index) => {
         return (
           <div key={index}>
-            <ArtCard
-              id={artWork.id}
-              title={artWork.title}
-              imageUrl={artWork.imageUrl}
-              hearts={artWork.hearts}
-              minimumBid={artWork.minimumBid}
-              userId={artWork.userId}
-            />
+            {artWork.bids ? (
+              <ArtCard
+                id={artWork.id}
+                title={artWork.title}
+                imageUrl={artWork.imageUrl}
+                hearts={artWork.hearts}
+                numberOfBids={artWork.bids.length}
+                userId={artWork.userId}
+              />
+            ) : (
+              <ArtCard
+                id={artWork.id}
+                title={artWork.title}
+                imageUrl={artWork.imageUrl}
+                hearts={artWork.hearts}
+                numberOfBids={0}
+                userId={artWork.userId}
+              />
+            )}
           </div>
         );
       })}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  margin: 20px;
-`;

@@ -1,0 +1,21 @@
+.container {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid gray;
+  text-align: center;
+}
+
+.artWorkPic {
+  width: 350px;
+  height: 350px;
+}
+.btn {
+  background-color: #e0115f;
+  color: white;
+  height: 30px;
+  border-radius: 12px;
+}
+.detailsLink {
+  text-decoration: none;
+  color: white;
+}

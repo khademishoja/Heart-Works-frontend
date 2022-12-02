@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import "./style.css";
 import { useEffect, useState } from "react";
 import { selectDetailsArtWorks } from "../store/artworks/selector";
 import {
@@ -40,16 +41,16 @@ const DetailsPage = () => {
 
   const onBidPost = () => {
     if (amount) {
-      if (bids.length === 0 && artWork.minimumBid >= amount) {
-        alert(`you have to bid more than ${artWork.minimumBid}`);
+      if (bids.length === 0 && artWork.minimumBid > amount) {
+        alert(`you have to bid at least ${artWork.minimumBid}`);
       } else {
         const amounts = bids.map((bid) => {
           return bid.amount;
         });
         const maxAmount = Math.max(...amounts);
         console.log("max bid", maxAmount);
-        if (amount <= maxAmount) {
-          alert(`you have to bid more than ${maxAmount}`);
+        if (amount < maxAmount + 1) {
+          alert(`you have to bid at least ${maxAmount} + 1 euro`);
         } else {
           dispatch(
             postBid({
@@ -68,12 +69,16 @@ const DetailsPage = () => {
   };
 
   return artWork && bids ? (
-    <div>
+    <div className="container">
       <div>
         <h2>{artWork.title}</h2>
-        <img src={artWork.imageUrl} alt="art work pic" />
+        <img src={artWork.imageUrl} alt="art work pic" className="artWorkPic" />
         <p>Hearts:{hearts}</p>
-        Bids:
+        <button onClick={onheartClick} className="btn">
+          Give heart
+        </button>
+        <h3> Bids:</h3>
+
         <ul>
           {bids.map((item, index) => {
             return (
@@ -84,7 +89,6 @@ const DetailsPage = () => {
             );
           })}
         </ul>
-        <button onClick={onheartClick}>Give heart</button>
         {token ? (
           <div>
             Amount :

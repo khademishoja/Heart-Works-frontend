@@ -1,0 +1,22 @@
+.Container {
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.btn {
+  background-color: #e0115f;
+  color: aliceblue;
+  height: 30px;
+  border-radius: 12px;
+}
+input {
+  margin: 20px;
+  height: 30px;
+}
+.artWorkPic {
+  width: 550px;
+  height: 550px;
+}
